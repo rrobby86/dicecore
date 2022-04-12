@@ -1,0 +1,32 @@
+:root {
+  --score-text-size: calc(0.8rem + 1.2vw);
+  --die-size: calc(2rem + 1.2vw);
+  --large-hspace: calc(2px + 2vw);
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-gap-m {
+  gap: 8px;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
