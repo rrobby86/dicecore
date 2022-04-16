@@ -3,11 +3,11 @@ ModalOverlay(:open="target !== null")
   .scoremod-root.flex-col.flex-gap-m
     .scoremod-main.flex-row.flex-gap-m
       .scoremod-dice.flex-col.flex-gap-m
-        Die(v-for="v in 6" :key="v" :value="v" :color="dieColor" @click="addDie(v)")
+        Die(v-for="v in 6" :key="v" :value="v" v-bind="diceProps" @click="addDie(v)")
       .scoremod-slots.flex-grow.flex-col.flex-gap-m
         .scoremod-slot(v-for="m in [3, 2, 1, 0]" :class="{selected:selectedSlot===m}" @click="selectedSlot=m")
           .scoremod-slot-label {{ m+1 }}x
-          Die(v-for="(d, i) in slotScores()[m]" :key="i" :value="d" :color="dieColor" @click="removeDie(m, i)")
+          Die(v-for="(d, i) in slotScores()[m]" :key="i" :value="d" v-bind="diceProps" @click="removeDie(m, i)")
     .scoremod-footer.flex-row.flex-gap-m
       button.scoremod-ok(@click="target=null") OK
       .scoremod-total.flex-grow {{ totalScore }}
@@ -15,17 +15,22 @@ ModalOverlay(:open="target !== null")
 
 <script setup>
 import { computed, ref } from 'vue'
+import { useScoresStore } from '../stores/scores'
+import { colors } from '../consts'
 import ModalOverlay from './ModalOverlay.vue'
 import Die from './Die.vue'
-import { useScoresStore } from '../stores/scores'
 
 defineEmits(["close"])
 const props = defineProps(["target"])
 
 const scores = useScoresStore()
 const slotScores = () => scores.scores[props.target.player].scores[props.target.round]
+const diceProps = computed(() => ({
+  color: colors[scores.scores[props.target.player].color].main,
+  pips: colors[scores.scores[props.target.player].color].fg
+}))
 const dieColor = computed(
-  () => scores.scores[props.target.player].color
+  () => scores.scores[props.target.player].color.main
 )
 const totalScore = computed(
   () => scores.roundScores[props.target.player][props.target.round]

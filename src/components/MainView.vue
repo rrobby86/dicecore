@@ -11,14 +11,14 @@
     table.scoretable
       TransitionGroup(name="player-rows")
         tr(v-for="player, pi in scores.scores" :key="player.id")
-          td.player-cell(:style="{backgroundColor:player ? player.color: '#000000'}")
+          td.player-cell(:style="playerStyle(player)")
             .player-root
               .player-name {{ player.name }}
               .player-buttons
                 button(@click="playerModal.open(pi, player)") M
                 button(@click="scores.removePlayer(pi)") X
           td.score-cell(v-for="score, ri in scores.roundScores[pi]" @click="openScoreModal(pi,ri)") {{ score }}
-          td.total-cell(:style="{backgroundColor:player ? player.color: '#000000'}") {{ scores.totalScores[pi] }}
+          td.total-cell(:style="playerStyle(player)") {{ scores.totalScores[pi] }}
   ScoreModal(:target="shownScore" @close="shownScore=null")
   PlayerModal(ref="playerModal" @confirmed="playerModalConfirmed")
   ResetModal(ref="resetModal")
@@ -28,6 +28,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useScoresStore } from '../stores/scores'
+import { colors } from '../consts'
 import ScoreModal from './ScoreModal.vue'
 import PlayerModal from './PlayerModal.vue'
 import ResetModal from './ResetModal.vue'
@@ -39,6 +40,11 @@ const shownScore = ref(null)
 const playerModal = ref()
 const resetModal = ref()
 const aboutModal = ref()
+
+const playerStyle = (player) => ({
+  backgroundColor: colors[player.color].main,
+  color: colors[player.color].fg,
+})
 
 function openScoreModal(player, round) {
   shownScore.value = { player, round }

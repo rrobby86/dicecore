@@ -1,6 +1,6 @@
 <template lang="pug">
 mixin pip(x,y,g)
-  circle.pip(cx=x cy=y r=8 v-if=g)
+  circle.pip(cx=x cy=y r=8 v-if=g :style="{fill:pips}")
 
 button.die
   svg(viewBox="0 0 100 100")
@@ -19,7 +19,7 @@ button.die
 <script setup>
 import { computed } from 'vue'
 
-const props = defineProps(["value", "color"])
+const props = defineProps(["value", "color", "pips"])
 
 const pc = computed(() => props.value >= 2)
 const pm = computed(() => props.value % 2)
@@ -36,9 +36,5 @@ const ps = computed(() => props.value === 6)
   padding: 0;
   cursor: pointer;
   outline: inherit;
-}
-
-.pip {
-  fill: white;
 }
 </style>

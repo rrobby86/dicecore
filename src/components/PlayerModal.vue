@@ -4,11 +4,11 @@ ModalOverlay(:open="active")
     input(v-model="data.name").playermod-name
     .playermod-palette
       button.playermod-color(
-        v-for="col in COLORS"
-        :key="col"
-        :class="{selected:data.color===col}"
-        :style="{backgroundColor:col}"
-        @click="data.color=col"
+        v-for="(col, colid) in colors"
+        :key="col.id"
+        :class="{selected:data.color===colid}"
+        :style="{backgroundColor:col.main}"
+        @click="data.color=colid"
       )
     button(@click="confirm") OK
     button(@click="active=false") Cancel
@@ -16,6 +16,7 @@ ModalOverlay(:open="active")
 
 <script setup>
 import { computed, ref, reactive } from 'vue'
+import { colors } from '../consts'
 import ModalOverlay from './ModalOverlay.vue'
 
 const COLORS = ['#ff0000', '#ff8800', '#ffff00', '#00ff00', '#8888ff', '#2222ff', '#ff22ff', '#880088']
