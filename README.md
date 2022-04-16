@@ -25,7 +25,6 @@ All data is saved using local storage on your browser and persisted across visit
 
 _(in rough priority order)_
 
-- proper die graphic in place of squares with numbers
 - icons in place of buttons
 - nicer player colors
 - HTML improvements for proper navigation
