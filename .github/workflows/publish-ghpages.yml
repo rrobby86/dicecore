@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  publish-ghpage:
+  publish-ghpages:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npm run build
+        run: npm run build -- --base /dicecore/
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
