@@ -91,5 +91,7 @@ export const useScoresStore = defineStore('scores', {
       this.nextId = 0
     }
   },
-  persist: true
+  persist: {
+    key: 'dicecore-scores'
+  }
 })
