@@ -9,7 +9,8 @@ ModalOverlay(:open="target !== null")
           .scoremod-slot-label {{ m+1 }}x
           Die(v-for="(d, i) in slotScores()[m]" :key="i" :value="d" v-bind="diceProps" @click="removeDie(m, i)")
     .scoremod-footer.flex-row.flex-gap-m
-      button.scoremod-ok(@click="target=null") OK
+      button.scoremod-ok(@click="target=null")
+        FAIcon(icon="check" size="2x" title="Confirm")
       .scoremod-total.flex-grow {{ totalScore }}
 </template>
 

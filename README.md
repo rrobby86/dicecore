@@ -6,16 +6,16 @@ Available at [https://rrobby86.github.io/dicecore](https://rrobby86.github.io/di
 
 ## Usage
 
-- Click _Add_ to add a player and select their name and color
+- Click <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/user-plus.svg" width="24" height="24"> to add a player and select their name and color
 - Click on a round score to set it
   - Click on one of the four areas (1x to 4x) to select it, then click on dice on the left to add them to selected area
   - Click on a die inside an area to remove it
   - Total scores for each round and for each player are computed automatically
-- Click _M_ next to a player to change their name or color
-- Click _X_ next to a player to remove them (scores are lost, can't be undone!)
-- Click _Rank_ to sort players by descending score
-- Click _Shuffle_ to sort players randomly (e.g. to determine turn order)
-- Click _Reset_ to clear all scores keeping the same players or to clear everything (can't be undone!)
+- Click <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/pencil.svg" width="24" height="24"> next to a player to change their name or color
+- Click <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/user-minus.svg" width="24" height="24"> next to a player to remove them (scores are lost, can't be undone!)
+- Click <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/arrow-down-wide-short.svg" width="24" height="24"> to sort players by descending score
+- Click <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/shuffle.svg" width="24" height="24"> to sort players randomly (e.g. to determine turn order)
+- Click <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/eraser.svg" width="24" height="24"> to clear all scores keeping the same players or to clear everything (can't be undone!)
 
 ### Data
 
@@ -25,8 +25,6 @@ All data is saved using local storage on your browser and persisted across visit
 
 _(in rough priority order)_
 
-- icons in place of buttons
-- nicer player colors
 - HTML improvements for proper navigation
 - dark theme and overall CSS improvement
 - selectable number of rounds

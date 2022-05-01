@@ -1,22 +1,28 @@
 <template lang="pug">
-.main
-  .main-topbar
-    .main-title(@click="aboutModal.open") DiceCore
-    .main-buttons
-      button(@click="playerModal.open(-1)") Add
-      button(@click="scores.shuffle") Shuffle
-      button(@click="scores.rank") Rank
-      button(@click="resetModal.open") Reset
-  .main-table
+.main.flex-col.flex-gap-m
+  .main-topbar.flex-row.flex-gap-m
+    .main-title.flex-grow(@click="aboutModal.open") DiceCore
+    .main-buttons.flex-row.flex-gap-m
+      button.custom-btn(@click="playerModal.open(-1)")
+        FAIcon(icon="user-plus" title="Add player")
+      button.custom-btn(@click="scores.rank")
+        FAIcon(icon="arrow-down-wide-short" title="Rank players by score")
+      button.custom-btn(@click="scores.shuffle")
+        FAIcon(icon="shuffle" title="Shuffle players")
+      button.custom-btn(@click="resetModal.open")
+        FAIcon(icon="eraser" title="Reset")
+  .main-table.flex-grow
     table.scoretable
       TransitionGroup(name="player-rows")
         tr(v-for="player, pi in scores.scores" :key="player.id")
           td.player-cell(:style="playerStyle(player)")
-            .player-root
-              .player-name {{ player.name }}
-              .player-buttons
-                button(@click="playerModal.open(pi, player)") M
-                button(@click="scores.removePlayer(pi)") X
+            .player-root.flex-row.flex-gap-m
+              .player-name.flex-grow {{ player.name }}
+              .player-buttons.flex-row.flex-gap-m
+                button.custom-btn(@click="playerModal.open(pi, player)")
+                  FAIcon(icon="pencil" title="Edit" :color="colors[player.color].fg")
+                button.custom-btn(@click="scores.removePlayer(pi)")
+                  FAIcon(icon="user-minus" title="Remove" :color="colors[player.color].fg")
           td.score-cell(v-for="score, ri in scores.roundScores[pi]" @click="openScoreModal(pi,ri)") {{ score }}
           td.total-cell(:style="playerStyle(player)") {{ scores.totalScores[pi] }}
   ScoreModal(:target="shownScore" @close="shownScore=null")
@@ -62,32 +68,29 @@ function playerModalConfirmed(id, data) {
 <style>
 .main {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 .main-topbar {
-  display: flex;
-  flex-direction: row;
   align-items: flex-start;
+  font-size: var(--text-size);
 }
 
 .main-title {
-  flex-grow: 1;
   font-size: 125%;
   cursor: pointer;
 }
 
-.main-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
+.main-buttons button {
+  font-size: 150%;
+  border: 1px dotted transparent;
+}
+
+.main-buttons button:focus {
+  border-color: red;
 }
 
 .main-table {
   height: 100%;
-  flex-grow: 1;
   overflow-y: auto;
 }
 
@@ -110,15 +113,17 @@ function playerModalConfirmed(id, data) {
 
 .player-root {
   overflow: hidden;
-  display: flex;
-  flex-direction: row;
+  font-size: var(--text-size);
 }
 
 .player-name {
-  flex-grow: 1;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.player-buttons button {
+  font-size: 100%;
 }
 
 .score-cell {
